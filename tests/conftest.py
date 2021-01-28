@@ -156,7 +156,7 @@ def setup_install_pexpect(ansible_module):
     fixture setup_puppet_empty_cert.
     """
     ansible_module.get_url(url="https://bootstrap.pypa.io/get-pip.py", dest="/root")
-    setup = ansible_module.command("python /root/get-pip.py")
+    setup = ansible_module.command("python3 /root/get-pip.py")
     for result in setup.values():
         assert result["rc"] == 0
     setup = ansible_module.command("pip install pexpect")
