@@ -1,17 +1,29 @@
-import configparser
+#import configparser
 
-config = configparser.ConfigParser()
-config.read("testfm.properties")
+#config = configparser.ConfigParser()
+#config.read("testfm.properties")
 
-RHN_USERNAME = config["subscription"]["RHN_USERNAME"]
-RHN_PASSWORD = config["subscription"]["RHN_PASSWORD"]
-FM_RHN_POOLID = config["subscription"]["FM_RHN_POOLID"]
-DOGFOOD_ORG = config["subscription"]["DOGFOOD_ORG"]
-DOGFOOD_ACTIVATIONKEY = config["subscription"]["DOGFOOD_ACTIVATIONKEY"]
-CAPSULE_DOGFOOD_ACTIVATIONKEY = config["subscription"]["CAPSULE_DOGFOOD_ACTIVATIONKEY"]
-DOGFOOD_URL = config["subscription"]["DOGFOOD_URL"]
-HOTFIX_URL = config["URLS"]["HOTFIX_URL"]
-SERVER_HOSTNAME = config["SERVER"]["SERVER_HOSTNAME"]
+from dynaconf import LazySettings
+settings = LazySettings(
+    envvar_prefix='TesTFM',
+    core_loaders=['YAML'],
+    settings_file=['settings.yaml'],
+    preload=['*.yaml'],
+    includes=['settings.local.yaml', '.secrets.yaml', '.secrets_*.yaml'],
+    envless_mode=True,
+    lowercase_read=True,
+)
+
+RHN_USERNAME = settings.subscription.RHN_USERNAME
+RHN_PASSWORD = settings.subscription.RHN_PASSWORD
+FM_RHN_POOLID = settings.subscription.FM_RHN_POOLID
+DOGFOOD_ORG = settings.subscription.DOGFOOD_ORG
+DOGFOOD_ACTIVATIONKEY = settings.subscription.DOGFOOD_ACTIVATIONKEY
+CAPSULE_DOGFOOD_ACTIVATIONKEY = settings.subscription.CAPSULE_DOGFOOD_ACTIVATIONKEY
+DOGFOOD_URL = settings.subscription.DOGFOOD_URL
+HOTFIX_URL = settings.URLS.HOTFIX_URL
+SERVER_HOSTNAME = settings.SERVER.SERVER_HOSTNAME
+
 katello_ca_consumer = DOGFOOD_URL + "/pub/katello-ca-consumer-latest.noarch.rpm"
 upstream_url = {
     "candlepin_repo": (

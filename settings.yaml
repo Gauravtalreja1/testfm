@@ -1,0 +1,13 @@
+SUBSCRIPTION:
+  RHN_USERNAME: rhsatqe
+  RHN_PASSWORD: 8tCk959BMGsYxWKy
+  FM_RHN_POOLID: 8a85f999710f3aea0171417da67717f8 8a85f99b710f3b190171417d1d677be6
+  DOGFOOD_URL: http://dogfood.sat.engineering.redhat.com
+  DOGFOOD_ORG: Sat6-CI
+  # DOGFOOD_ACTIVATIONKEY: satellite-6.8-qa-rhel7
+  DOGFOOD_ACTIVATIONKEY: satellite-6.9-qa-rhel7
+  CAPSULE_DOGFOOD_ACTIVATIONKEY: capsule-6.9-qa-rhel7
+URLS:
+  HOTFIX_URL: http://file.pnq.redhat.com/jpathan/repos/
+SERVER:
+  SERVER_HOSTNAME: dhcp-3-13.vms.sat.rdu2.redhat.com
